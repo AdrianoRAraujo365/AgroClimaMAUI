@@ -1,0 +1,49 @@
+💻 Visualizador de Arquivos
+
+AppShell.xaml
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:AgroClimaMaui.Views"
+       x:Class="AgroClimaMaui.AppShell"
+       Title="AgroClima"
+       FlyoutBackgroundColor="#2E7D32"
+       FlyoutBehavior="Flyout">
+
+    <Shell.FlyoutHeader>
+        <Grid HeightRequest="150" BackgroundColor="#1B5E20">
+            <VerticalStackLayout VerticalOptions="Center" Padding="20">
+                <Label Text="🌱 AgroClima" FontSize="28" FontAttributes="Bold" TextColor="White" />
+                <Label Text="Monitoramento Agrícola" FontSize="14" TextColor="#A5D6A7" />
+            </VerticalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Início" Icon="home.png">
+        <ShellContent ContentTemplate="{DataTemplate views:InicioPage}" Route="inicio" />
+    </FlyoutItem>
+    <FlyoutItem Title="Clima" Icon="weather.png">
+        <ShellContent ContentTemplate="{DataTemplate views:ClimaPage}" Route="clima" />
+    </FlyoutItem>
+    <FlyoutItem Title="Nutrição" Icon="nutrition.png">
+        <ShellContent ContentTemplate="{DataTemplate views:NutricaoPage}" Route="nutricao" />
+    </FlyoutItem>
+    <FlyoutItem Title="Resultados" Icon="chart.png">
+        <ShellContent ContentTemplate="{DataTemplate views:ResultadosPage}" Route="resultados" />
+    </FlyoutItem>
+
+    <TabBar>
+        <Tab Title="Consulta" Icon="search.png">
+            <ShellContent ContentTemplate="{DataTemplate views:InicioPage}" />
+        </Tab>
+        <Tab Title="Clima" Icon="weather.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ClimaPage}" />
+        </Tab>
+        <Tab Title="Nutrição" Icon="nutrition.png">
+            <ShellContent ContentTemplate="{DataTemplate views:NutricaoPage}" />
+        </Tab>
+        <Tab Title="Resultados" Icon="chart.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ResultadosPage}" />
+        </Tab>
+    </TabBar>
+</Shell>
