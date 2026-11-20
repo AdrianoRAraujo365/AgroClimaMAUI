@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AgroClimaMaui.ViewModels"
+             x:Class="AgroClimaMaui.Views.InicioPage"
+             Title="Consulta IBGE"
+             BackgroundColor="#F5F5F5">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Frame BackgroundColor="#2E7D32" CornerRadius="10" Padding="15">
+                <VerticalStackLayout>
+                    <Label Text="🌍 Consulta de Dados" FontSize="22" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Selecione estado e município" FontSize="12" TextColor="#A5D6A7" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Estado" FontAttributes="Bold" TextColor="#2E7D32" />
+                    <Picker x:Name="PickerEstado" Title="Selecione um estado"
+                            ItemsSource="{Binding Estados}" ItemDisplayBinding="{Binding Nome}"
+                            SelectedIndexChanged="OnEstadoSelected" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Município" FontAttributes="Bold" TextColor="#2E7D32" />
+                    <Picker x:Name="PickerMunicipio" Title="Selecione um município"
+                            ItemsSource="{Binding Municipios}" ItemDisplayBinding="{Binding Nome}"
+                            SelectedIndexChanged="OnMunicipioSelected" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Produto Agrícola Principal" FontAttributes="Bold" TextColor="#2E7D32" />
+                    <Picker x:Name="PickerProduto" Title="Selecione o produto"
+                            ItemsSource="{Binding Produtos}" ItemDisplayBinding="{Binding Nome}"
+                            SelectedItem="{Binding ProdutoSelecionado}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Button Text="🔍 Consultar Dados" BackgroundColor="#2E7D32" TextColor="White"
+                    FontSize="16" CornerRadius="10" HeightRequest="50"
+                    Command="{Binding ConsultarDadosCommand}" />
+            <ActivityIndicator IsRunning="{Binding IsLoading}" Color="#2E7D32" IsVisible="{Binding IsLoading}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
