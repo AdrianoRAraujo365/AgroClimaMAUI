@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AgroClimaMaui.ViewModels"
+             x:Class="AgroClimaMaui.Views.ClimaPage"
+             Title="Dados Climáticos"
+             BackgroundColor="#F5F5F5">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Frame BackgroundColor="#1565C0" CornerRadius="10" Padding="15">
+                <VerticalStackLayout>
+                    <Label Text="🌡️ Condições Climáticas" FontSize="22" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Temperatura, umidade e pressão" FontSize="12" TextColor="#90CAF9" />
+                </VerticalStackLayout>
+            </Frame>
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <Frame Grid.Column="0" BackgroundColor="White" CornerRadius="10" Padding="10">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="🌡️" FontSize="30" HorizontalOptions="Center" />
+                        <Label Text="Média" FontSize="12" TextColor="#666" HorizontalOptions="Center" />
+                        <Label Text="{Binding DadosClima.TemperaturaMedia, StringFormat='{0:F1}°C'}" FontSize="18" FontAttributes="Bold" TextColor="#2E7D32" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Grid.Column="1" BackgroundColor="White" CornerRadius="10" Padding="10">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="🔥" FontSize="30" HorizontalOptions="Center" />
+                        <Label Text="Máxima" FontSize="12" TextColor="#666" HorizontalOptions="Center" />
+                        <Label Text="{Binding DadosClima.TemperaturaMaxima, StringFormat='{0:F1}°C'}" FontSize="18" FontAttributes="Bold" TextColor="#D32F2F" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Grid.Column="2" BackgroundColor="White" CornerRadius="10" Padding="10">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="❄️" FontSize="30" HorizontalOptions="Center" />
+                        <Label Text="Mínima" FontSize="12" TextColor="#666" HorizontalOptions="Center" />
+                        <Label Text="{Binding DadosClima.TemperaturaMinima, StringFormat='{0:F1}°C'}" FontSize="18" FontAttributes="Bold" TextColor="#1976D2" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Frame Grid.Column="0" BackgroundColor="White" CornerRadius="10" Padding="15">
+                    <VerticalStackLayout>
+                        <Label Text="💧 Umidade" FontAttributes="Bold" TextColor="#2E7D32" />
+                        <Label Text="{Binding DadosClima.Umidade, StringFormat='{0:F1}%'}" FontSize="24" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Grid.Column="1" BackgroundColor="White" CornerRadius="10" Padding="15">
+                    <VerticalStackLayout>
+                        <Label Text="🌬️ Pressão" FontAttributes="Bold" TextColor="#2E7D32" />
+                        <Label Text="{Binding DadosClima.PressaoAtmosferica, StringFormat='{0:F0} hPa'}" FontSize="24" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+            <Frame BackgroundColor="White" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🗺️ Mapa de Calor (7 dias)" FontAttributes="Bold" TextColor="#2E7D32" />
+                    <BoxView HeightRequest="200" BackgroundColor="#E0E0E0" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
