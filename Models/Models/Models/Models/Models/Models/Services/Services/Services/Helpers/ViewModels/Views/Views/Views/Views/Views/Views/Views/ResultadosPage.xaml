@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AgroClimaMaui.ViewModels"
+             x:Class="AgroClimaMaui.Views.ResultadosPage"
+             Title="Resultados Consolidados"
+             BackgroundColor="#F5F5F5">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Frame BackgroundColor="#6A1B9A" CornerRadius="10" Padding="15">
+                <VerticalStackLayout>
+                    <Label Text="📊 Resultados Consolidados" FontSize="22" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="IBGE + Clima + USDA" FontSize="12" TextColor="#CE93D8" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="🏛️ Dados IBGE" FontAttributes="Bold" TextColor="#6A1B9A" FontSize="16" />
+                    <Label Text="{Binding ProdutoSelecionado.Nome, StringFormat='Produto: {0}'}" />
+                    <Label Text="{Binding ProdutoSelecionado.ProducaoToneladas, StringFormat='Produção: {0:N0} toneladas'}" />
+                    <Label Text="{Binding ProdutoSelecionado.ValorProducao, StringFormat='Valor: R$ {0:N2}'}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="🌡️ Dados Climáticos" FontAttributes="Bold" TextColor="#6A1B9A" FontSize="16" />
+                    <Label Text="{Binding DadosClima.TemperaturaMedia, StringFormat='Temp. Média: {0:F1}°C'}" />
+                    <Label Text="{Binding DadosClima.TemperaturaMaxima, StringFormat='Temp. Máxima: {0:F1}°C'}" />
+                    <Label Text="{Binding DadosClima.TemperaturaMinima, StringFormat='Temp. Mínima: {0:F1}°C'}" />
+                    <Label Text="{Binding DadosClima.Umidade, StringFormat='Umidade: {0:F1}%'}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="🥗 Dados Nutricionais (USDA)" FontAttributes="Bold" TextColor="#6A1B9A" FontSize="16" />
+                    <Label Text="{Binding AlimentoUsda.Descricao, StringFormat='Alimento: {0}'}" />
+                    <Label Text="{Binding AlimentoUsda.FichaTecnica.Calorias, StringFormat='Calorias: {0:F0} kcal'}" />
+                    <Label Text="{Binding AlimentoUsda.FichaTecnica.Proteina, StringFormat='Proteína: {0:F1} g'}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Button Text="🔄 Nova Consulta" BackgroundColor="#6A1B9A" TextColor="White"
+                    FontSize="16" CornerRadius="10" HeightRequest="50"
+                    Clicked="OnNovaConsultaClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
